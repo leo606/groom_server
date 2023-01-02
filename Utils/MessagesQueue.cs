@@ -26,7 +26,7 @@ public class MessagesQueue
     return _queue.Dequeue();
   }
 
-  public static int GetNextMessagesCount()
+  public static int GetMessagesCount()
   {
     return _queue.Count();
   }

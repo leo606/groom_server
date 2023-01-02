@@ -37,7 +37,7 @@ public class GroomService : Groom.GroomBase
     while (true)
     {
       // await streamWriter.WriteAsync(new ReceivedMessage { MsgTime = Timestamp.FromDateTime(DateTime.UtcNow), User = "1", Contents = "Test msg" });
-      if (MessagesQueue.GetNextMessagesCount() > 0)
+      if (MessagesQueue.GetMessagesCount() > 0)
       {
         await streamWriter.WriteAsync(MessagesQueue.GetNextMessage());
       }
@@ -67,7 +67,7 @@ public class GroomService : Groom.GroomBase
     {
       while (await incomingStream.MoveNext())
       {
-        Console.WriteLine($"Message received: {incomingStream.Current.Contents}");
+        Console.WriteLine($"Message received: {incomingStream.Current.Content}");
         UsersQueues.AddMessageToRoom(ConvertToReceivedMessage(incomingStream.Current), incomingStream.Current.Room);
       }
     });
@@ -120,7 +120,6 @@ public class GroomService : Groom.GroomBase
     chatMsg.User = rcMsg.User;
     chatMsg.Room = room;
 
-    return chatMsg
-
+    return chatMsg;
   }
 }
