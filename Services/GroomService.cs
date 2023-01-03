@@ -47,7 +47,6 @@ public class GroomService : Groom.GroomBase
 
   public override async Task StartChat(IAsyncStreamReader<ChatMessage> incomingStream, IServerStreamWriter<ChatMessage> outgoingStream, ServerCallContext context)
   {
-
     // Wait for the first message to get the user name
     while (!await incomingStream.MoveNext())
     {
